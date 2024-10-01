@@ -17,11 +17,20 @@ class OnboardingContainerViewController: UIViewController {
   }
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    self.pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     
-    let page1 = ViewController1()
-    let page2 = ViewController2()
-    let page3 = ViewController3()
+    self.pageViewController = UIPageViewController(
+      transitionStyle: .scroll,
+      navigationOrientation: .horizontal, options: nil)
+    
+    let page1 = OnboardingViewController(
+      heroImageName: "delorean",
+      titleText: "Bankey is faster, easier to use, and has a brand new look and feel that will make you feel like you are back in the 80s.")
+    let page2 = OnboardingViewController(
+      heroImageName: "world",
+      titleText: "Move your money around the world quickly and securely.")
+    let page3 = OnboardingViewController(
+      heroImageName: "thumbs",
+      titleText: "Learn more at www.bankey.com.")
     
     pages.append(page1)
     pages.append(page2)
@@ -43,7 +52,7 @@ class OnboardingContainerViewController: UIViewController {
     
     addChild(pageViewController)                //자식 viewcontroller 를 부모에 더하기
     view.addSubview(pageViewController.view)    //자식 viewcontroller 의 view를 부모의 view에 더하기
-    pageViewController.didMove(toParent: self)  //
+    pageViewController.didMove(toParent: self)  //자식 뷰 컨트롤러에게 부모에 추가되었음을 알림
     
     pageViewController.dataSource = self
     pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
